@@ -5,6 +5,8 @@
 #include <vector>
 #include "Scene.h"
 #include "Visualizer.h"
+#include "StructurePattern.h"
+#include "Common.h"
 
 int main(int argc, char* argv[])
 {
@@ -12,56 +14,38 @@ int main(int argc, char* argv[])
 
     cv->w = 600;
     cv->h = 600;
-    
-    Vertex* a1 = new Vertex(-5, 5, 1);
-    Vertex* a = new Vertex(-5, -5, 1);
-    Vertex* d = new Vertex(5, -5, 1);
-    Vertex* d1 = new Vertex(5, 5, 1);
-    Vertex* b1 = new Vertex(-5, 5, 2);
-    Vertex* b = new Vertex(-5, -5, 2);
-    Vertex* c = new Vertex(5, -5, 2);
-    Vertex* c1 = new Vertex(5, 5, 2);
 
-    Poly fb(d, a1, a);
-    Poly ft(d, d1, a1);
-    Poly rb(b, c1, c);
-    Poly rt(b, b1, c1);
-    Poly rib(c, d1, d);
-    Poly rit(c, c1, d1);
-    Poly lb(a, b1,b);
-    Poly lt(a, a1, b1);
-    Poly tb(b1, d1, c1);
-    Poly tt(b1, a1, d1);
-    Poly bb(b, d, a);
-    Poly bt(b, c, d);
 
-    vector<Poly> polychain;
-    polychain.push_back(rb);
-    polychain.push_back(rt);
-    polychain.push_back(rib);
-    polychain.push_back(rit);
-    polychain.push_back(lb);
-    polychain.push_back(lt);
-    polychain.push_back(tb);
-    polychain.push_back(tt);
-    polychain.push_back(bb);
-    polychain.push_back(bt);
-    polychain.push_back(fb);
-    polychain.push_back(ft);
+    Structure* struct1 = new Structure(StructurePattern::Cube());
 
-    Structure struct1(polychain);
-
-    Scene scene(10);
-    scene.append_structure(struct1);
+    Scene* scene = new Scene(10);
+    scene->append_structure(struct1);
 
     Visualizer visualizer;
 
-    visualizer.setup_scene(&scene);
+    visualizer.setup_scene(scene);
   
-    visualizer.update([]() {
+    visualizer.update([scene]() {
+
+        if (GetAsyncKeyState((unsigned short)'W') & 0x8000) {
+            Vector* v = new Vector(0, 0.1, 0);
+            scene->structs[0]->fold_vector(v);
+        }
+        if (GetAsyncKeyState((unsigned short)'S') & 0x8000) {
+            Vector* v = new Vector(0, -0.1, 0);
+            scene->structs[0]->fold_vector(v);
+        }
+        if (GetAsyncKeyState((unsigned short)'A') & 0x8000) {
+            Vector* v = new Vector(-0.1, 0, 0);
+            scene->structs[0]->fold_vector(v);
+        }
+        if (GetAsyncKeyState((unsigned short)'D') & 0x8000) {
+            Vector* v = new Vector(0.1, 0, 0);
+            scene->structs[0]->fold_vector(v);
+        }
     }); 
 
-    visualizer.initialize(cv, 10, 2);
+    visualizer.initialize(cv, 5, 1);
 
     return 0;
 }

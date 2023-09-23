@@ -8,8 +8,8 @@ class Scene
 public:
 	int project_factor;
 
-	vector<Structure> structs;
-	void append_structure(Structure structure);
+	vector<Structure*> structs;
+	void append_structure(Structure* structure);
 	Scene(int project_factor);
 };
 

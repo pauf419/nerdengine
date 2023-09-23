@@ -1,4 +1,5 @@
 #include "Visualizer.h"
+#include "Vector.h"
 
 Visualizer::Visualizer() {
 	
@@ -28,8 +29,11 @@ void Visualizer::initialize(canvas * c, int project_factor, int bfw) {
 		SDL_FillRect(pxs, NULL, 0x00000000);
 
 		for (int i = 0; i < this->scene->structs.size(); i++) {
-			for (int a = 0; a < this->scene->structs[i].polychain.size(); a++) {
-				Core::render_polygon(this->scene->structs[0].polychain[a], pxs, project_factor, bfw, c);
+			/*for (int b = 0; b < this->scene->structs[i]->vertexchain.size(); b++) {
+				this->scene->structs[i]->vertexchain[b]->fold_vector(v);
+			}*/
+			for (int a = 0; a < this->scene->structs[i]->polychain.size(); a++) {
+				Core::render_polygon(this->scene->structs[0]->polychain[a], pxs, project_factor, bfw, c);
 			}
 		}
 

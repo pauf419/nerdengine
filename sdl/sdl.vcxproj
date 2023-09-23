@@ -139,6 +139,8 @@
     <ClCompile Include="Poly.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Structure.cpp" />
+    <ClCompile Include="StructurePattern.cpp" />
+    <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Visualizer.cpp" />
   </ItemGroup>
@@ -148,7 +150,9 @@
     <ClInclude Include="Poly.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Structure.h" />
+    <ClInclude Include="StructurePattern.h" />
     <ClInclude Include="Trigon.h" />
+    <ClInclude Include="Vector.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Visualizer.h" />
   </ItemGroup>
