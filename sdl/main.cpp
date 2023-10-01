@@ -7,6 +7,7 @@
 #include "Visualizer.h"
 #include "StructurePattern.h"
 #include "Common.h"
+#include "TransformMatrix.h"
 
 int main(int argc, char* argv[])
 {
@@ -15,37 +16,24 @@ int main(int argc, char* argv[])
     cv->w = 600;
     cv->h = 600;
 
+    Structure* struct1 = new Structure(StructurePattern::Cube(100, 0, 8, 10));
 
-    Structure* struct1 = new Structure(StructurePattern::Cube());
 
     Scene* scene = new Scene(10);
     scene->append_structure(struct1);
-
     Visualizer visualizer;
 
     visualizer.setup_scene(scene);
-  
-    visualizer.update([scene]() {
 
-        if (GetAsyncKeyState((unsigned short)'W') & 0x8000) {
-            Vector* v = new Vector(0, 0.1, 0);
-            scene->structs[0]->fold_vector(v);
-        }
-        if (GetAsyncKeyState((unsigned short)'S') & 0x8000) {
-            Vector* v = new Vector(0, -0.1, 0);
-            scene->structs[0]->fold_vector(v);
-        }
-        if (GetAsyncKeyState((unsigned short)'A') & 0x8000) {
-            Vector* v = new Vector(-0.1, 0, 0);
-            scene->structs[0]->fold_vector(v);
-        }
-        if (GetAsyncKeyState((unsigned short)'D') & 0x8000) {
-            Vector* v = new Vector(0.1, 0, 0);
-            scene->structs[0]->fold_vector(v);
-        }
+
+    float rad = 0;
+  
+    visualizer.update([scene, struct1, &rad]() {
+        rad -= 0.05;
+        scene->structs[0]->prepare_matrix(TransformMatrix::rotatey,rad);
     }); 
 
-    visualizer.initialize(cv, 5, 1);
+    visualizer.initialize(cv, 10, 3);
 
     return 0;
 }

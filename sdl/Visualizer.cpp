@@ -1,6 +1,6 @@
 #include "Visualizer.h"
 #include "Vector.h"
-
+#include <Windows.h>
 Visualizer::Visualizer() {
 	
 }
@@ -26,14 +26,13 @@ void Visualizer::initialize(canvas * c, int project_factor, int bfw) {
 		SDL_Event ev;
 		while (SDL_PollEvent(&ev)) if (ev.type == SDL_QUIT) run = 0;
 
+		float rad = 3.14159 / -2;
+
 		SDL_FillRect(pxs, NULL, 0x00000000);
 
 		for (int i = 0; i < this->scene->structs.size(); i++) {
-			/*for (int b = 0; b < this->scene->structs[i]->vertexchain.size(); b++) {
-				this->scene->structs[i]->vertexchain[b]->fold_vector(v);
-			}*/
 			for (int a = 0; a < this->scene->structs[i]->polychain.size(); a++) {
-				Core::render_polygon(this->scene->structs[0]->polychain[a], pxs, project_factor, bfw, c);
+				Core::render_polygon(this->scene->structs[i]->polychain[a], pxs, project_factor, bfw, c);
 			}
 		}
 

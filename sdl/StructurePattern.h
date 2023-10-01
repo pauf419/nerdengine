@@ -11,7 +11,11 @@ class StructurePattern
 {
 public: 
 	StructurePattern();
-	static Structure_data Cube();
+	static Structure_data Cube(int posx,
+        int posy,
+        int posz,
+        float h);
+	static Structure_data Segment();
 };
 #endif
 

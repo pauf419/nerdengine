@@ -64,7 +64,7 @@ CARTPoint Core::project_vertex2centric_coosys(Vertex* v, canvas* c, int project_
 
 CARTPoint Core::project_CARTP2centric_coosys(CARTPoint _p, canvas* c, int project_factor) {
     CARTPoint p;
-    if (_p.x < 0) p.x = (c->w / 2) - abs(_p.x * project_factor);
+    if (_p.x < 0) p.x = ((c->w / 2) - abs(_p.x * project_factor));
     else p.x = (c->w / 2) + (_p.x * project_factor);
     if (_p.y < 0) p.y = (c->h / 2) + abs(_p.y * project_factor);
     else p.y = (c->h / 2) - (_p.y * project_factor);
@@ -80,7 +80,7 @@ void Core::project_CARTP2centric_coosys(CARTPoint* _p, canvas* c, int project_fa
 
 CARTPoint Core::covert_scene_vertex2CARTP(Vertex* v, int bfw) {
     CARTPoint p;
-    p.x = v->x * (bfw) / v->z;
+    p.x = v->x * bfw / v->z;
     p.y = v->y * bfw / v->z;
     return p;
 }

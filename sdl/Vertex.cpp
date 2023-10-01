@@ -12,3 +12,9 @@ void Vertex::fold_vector(Vector* v) {
 	this->y = this->y + v->y;
 	this->z = this->z + v->z;
 }
+
+void Vertex::fold_vector(Vector v) {
+	this->x = this->x + v.x;
+	this->y = this->y + v.y;
+	this->z = this->z + v.z;
+}

@@ -24,7 +24,7 @@
     <ProjectGuid>{018fd472-f47b-494f-b796-2e0508081bfa}</ProjectGuid>
     <RootNamespace>sdl</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ne</ProjectName>
+    <ProjectName>src</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,6 +140,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="StructurePattern.cpp" />
+    <ClCompile Include="TransformMatrix.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Visualizer.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="StructurePattern.h" />
+    <ClInclude Include="TransformMatrix.h" />
     <ClInclude Include="Trigon.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vertex.h" />
